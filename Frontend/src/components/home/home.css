@@ -1,0 +1,246 @@
+.home-page {
+  min-height: 100vh;
+  padding: 2rem;
+  background: linear-gradient(135deg, #f5f7ff, #eaf3ff);
+  font-family: Arial, sans-serif;
+  color: #1f2937;
+}
+
+.hero {
+  max-width: 1100px;
+  margin: 0 auto 2rem;
+  text-align: left;
+}
+
+.hero h1 {
+  margin-bottom: 0.5rem;
+  font-size: 2.25rem;
+  color: #111827;
+}
+
+.hero p {
+  margin: 0;
+  color: #4b5563;
+  font-size: 1.1rem;
+}
+
+.dashboard-panel {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  gap: 1.5rem;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.filters-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  flex: 1;
+}
+
+.search-input {
+  width: 100%;
+  max-width: 350px;
+  padding: 0.75rem 1rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  outline: none;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+
+.search-input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.filter-select {
+  min-width: 180px;
+  padding: 0.75rem 2.5rem 0.75rem 1rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: #ffffff;
+  font-size: 0.95rem;
+  color: #374151;
+  cursor: pointer;
+  outline: none;
+  appearance: none;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+  background-image:
+    linear-gradient(45deg, transparent 50%, #64748b 50%),
+    linear-gradient(135deg, #64748b 50%, transparent 50%);
+  background-position:
+    calc(100% - 18px) calc(50% - 3px),
+    calc(100% - 12px) calc(50% - 3px);
+  background-size: 6px 6px;
+  background-repeat: no-repeat;
+}
+
+.filter-select:hover {
+  border-color: #94a3b8;
+}
+
+.filter-select:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.action-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+button {
+  padding: 0.65rem 1.2rem;
+  border: none;
+  border-radius: 8px;
+  color: #ffffff;
+  background: #2563eb;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    transform 0.1s;
+}
+
+button:hover {
+  background: #1d4ed8;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+.create-btn {
+  padding: 0.75rem 1.5rem;
+  white-space: nowrap;
+}
+
+.card-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.card-actions button {
+  min-width: 90px;
+}
+
+.cancel-btn {
+  background: #f59e0b;
+}
+
+.cancel-btn:hover {
+  background: #d97706;
+}
+
+.danger-btn {
+  background: #dc2626;
+}
+
+.danger-btn:hover {
+  background: #b91c1c;
+}
+
+.requests-list {
+  padding: 1.75rem;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.05),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.requests-list h3 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  font-size: 1.25rem;
+  color: #374151;
+  border-bottom: 2px solid #f1f5f9;
+  padding-bottom: 0.75rem;
+}
+
+.request-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.request-card:last-child {
+  border-bottom: none;
+}
+
+.request-card h4 {
+  margin: 0 0 0.4rem;
+  font-size: 1.15rem;
+  color: #111827;
+}
+
+.request-card p {
+  margin: 0 0 0.5rem;
+  color: #4b5563;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.request-card small {
+  color: #6b7280;
+  font-size: 0.85rem;
+  background: #f8fafc;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  border: 1px solid #e2e8f0;
+}
+
+@media (max-width: 640px) {
+  .dashboard-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filters-container {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .search-input,
+  .filter-select {
+    width: 100%;
+    max-width: none;
+  }
+
+  .action-container {
+    width: 100%;
+  }
+
+  .create-btn {
+    width: 100%;
+  }
+
+  .request-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .card-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}

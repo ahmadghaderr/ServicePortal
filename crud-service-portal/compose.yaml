@@ -1,0 +1,65 @@
+services:
+  postgres:
+    image: postgres:17
+    container_name: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 201201
+      POSTGRES_DB: servicePortal
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - portal-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d servicePortal"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    build:
+      context: .
+      dockerfile: DockerFile.dev
+    container_name: service-portal-backend
+    restart: always
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USERNAME: postgres
+      DB_PASSWORD: 201201
+      DB_NAME: servicePortal
+    depends_on:
+      - postgres
+    networks:
+      - portal-network
+
+  frontend:
+    build:
+      context: ../frontend
+      dockerfile: DockerFile
+    container_name: service-portal-frontend
+    restart: always
+    ports:
+      - "5173:5173"
+    volumes:
+      - ../frontend:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+    networks:
+      - portal-network
+
+volumes:
+  postgres_data:
+
+networks:
+  portal-network:
+    driver: bridge
