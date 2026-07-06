@@ -13,7 +13,7 @@ import {
 import { RequestsService } from './requests.service';
 import { CreateRequestDto } from './dto/create-request.dto';
 import { Department, Status } from './entities/request.entity';
-
+import { EditRequestDto } from './dto/update-request.dto';
 @Controller('api/requests')
 export class RequestsController {
   constructor(private readonly requestsService: RequestsService) {}
@@ -38,8 +38,11 @@ export class RequestsController {
   }
 
   @Put(':id')
-  updateStatus(@Param('id', ParseIntPipe) id: number) {
-    return this.requestsService.updateStatus(id);
+  EditRequest(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() updateDto: EditRequestDto,
+  ) {
+    return this.requestsService.EditRequest(id, updateDto);
   }
 
   @Patch(':id/cancel')

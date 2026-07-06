@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, ILike, FindOptionsWhere } from 'typeorm';
 import { ServiceRequest, Status, Department } from './entities/request.entity';
 import { CreateRequestDto } from './dto/create-request.dto';
-
+import { EditRequestDto } from './dto/update-request.dto';
 @Injectable()
 export class RequestsService {
   constructor(
@@ -58,8 +58,16 @@ export class RequestsService {
     };
   }
 
-  async updateStatus(id: number) {
+  async EditRequest(id: number, updateDto: EditRequestDto) {
     const request = await this.findOne(id);
+
+    if (updateDto.title) request.title = updateDto.title;
+    if (updateDto.description) request.description = updateDto.description;
+    if (updateDto.department) request.department = updateDto.department;
+    if (updateDto.requesterEmail)
+      request.requesterEmail = updateDto.requesterEmail;
+
+    request.status = Status.ACCEPTED;
 
     const updated = await this.requestRepository.save(request);
 
